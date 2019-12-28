@@ -26,7 +26,6 @@ class Servo():
         self.sv.ChangeDutyCycle(7.25)
         time.sleep(0.5)
         self.sv.stop()
-        GPIO.cleanup()
 
 # debug
 if __name__ == '__main__':
@@ -36,4 +35,5 @@ if __name__ == '__main__':
             sv.handle(float(input()))
     except KeyboardInterrupt:
         sv.stop()
+        GPIO.cleanup()
 
