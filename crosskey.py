@@ -4,6 +4,8 @@
 import RPi.GPIO as GPIO    
 import time
 
+import sys
+sys.path.append('./lib')
 import servo
 import motor
 
@@ -22,8 +24,8 @@ def getch():
         finally:
             termios.tcsetattr(fd,termios.TCSADRAIN,old)
 
-cur=0
-back=False
+cur = 0
+back = False
 try:
     while True:
         key = ord(getch())
@@ -33,13 +35,13 @@ try:
         if key == 106:
             if not cur == 106:
                 sv.handle(0)
-                cur=106
+                cur = 106
             else:
                 sv.handle(-30)
         if key == 108:
             if not cur == 108:
                 sv.handle(0)
-                cur=108
+                cur = 108
             else:
                 sv.handle(30)
         if key == 105:
@@ -59,6 +61,7 @@ try:
 
 except Exception as e:
     pass
+
 finally:
     sv.stop()
     mt.stop()
