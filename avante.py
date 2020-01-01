@@ -3,7 +3,7 @@
 
 import time
 import RPi.GPIO as GPIO    
-from bottle import route,run
+from bottle import route,run,template,static_file
 
 import sys
 sys.path.append('./lib')
@@ -20,7 +20,11 @@ mt = motor.Motor()
 
 @route('/')
 def index():
-    return 'aaa'
+    return template('ctl')
+
+@route('/res/<path>')
+def index(path):
+    return static_file(path,root='./res')
 
 @route('/angle/<angle>')
 def index(angle=0):
