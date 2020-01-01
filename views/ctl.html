@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5">
         <style>
         html, body {
-            background: #111;
             position: absolute;
             top: 0;
             left: 0;
@@ -14,9 +13,27 @@
             padding: 0;
             margin: 0;
         }
+        #handle {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 50%;
+            width: 100%;
+            background: #111;
+        }
+        #throttle {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 50%;
+            width: 100%;
+            background: #069;
+        }
         </style>
     </head>
     <body>
+        <div id="handle"></div>
+        <div id="throttle"></div>
         <script src="/res/nipplejs.js"></script>
         <script src="/res/ctl.js"></script>
     </body>

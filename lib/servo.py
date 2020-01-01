@@ -16,11 +16,11 @@ class Servo():
         self.sv = GPIO.PWM(3,50)
         self.sv.start(0.0)
 
-    def handle(self,dgree):
+    def angle(self,dgree):
         if dgree < -44 or 44 < dgree:
             return 
         self.sv.ChangeDutyCycle(7.25+1.75*dgree/45)
-        time.sleep(0.1)
+        time.sleep(0.05)
 
     def stop(self):
         self.sv.ChangeDutyCycle(7.25)
@@ -32,7 +32,7 @@ if __name__ == '__main__':
     sv = Servo()
     try:
         while True:
-            sv.handle(float(input()))
+            sv.angle(float(input()))
     except KeyboardInterrupt:
         sv.stop()
         GPIO.cleanup()

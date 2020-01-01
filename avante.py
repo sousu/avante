@@ -26,21 +26,20 @@ def index():
 def index(path):
     return static_file(path,root='./res')
 
-@route('/angle/<angle>')
-def index(angle=0):
-    print(angle)
-    sv.handle(float(angle))
+@route('/state/<val>')
+def index(val='0_0'):
+    v = val.split('_')
+    sv.angle(float(v[0]))
     return 
 
+#--- ---
 try:
     run(host=args[1],port=args[2])
-
 except Exception as e:
     print(e)
     pass
-
 finally:
-    print('..cleanup')
+    print('..Cleanup')
     sv.stop()
     mt.stop()
     GPIO.cleanup()
