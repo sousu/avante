@@ -15,6 +15,7 @@ if not len(args) == 3:
     print('usage avante.py <address> <port>')
     quit()
 
+c = ['']*2
 sv = servo.Servo()
 mt = motor.Motor()
 
@@ -29,15 +30,20 @@ def index(path):
 @route('/state/<val>')
 def index(val='0_0'):
     v = val.split('_')
-    sv.angle(float(v[0]))
+    if not c[0] == v[0]:
+        sv.angle(float(v[0]))
+        c[0] = v[0]
+    if not c[1] == v[1]:
+        mt.move(float(v[1]))
+        c[1] = v[1]
     return 
 
 #--- ---
 try:
     run(host=args[1],port=args[2])
 except Exception as e:
+    print('..ERR')
     print(e)
-    pass
 finally:
     print('..Cleanup')
     sv.stop()

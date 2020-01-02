@@ -29,7 +29,7 @@ class Motor():
         self.mt.ChangeDutyCycle(7.25+(2.00)*pw/100)
         time.sleep(0.1)
     
-    def free(self,pw):
+    def move(self,pw):
         self.mt.ChangeDutyCycle(7.25+(-2.00)*pw/100)
         time.sleep(0.1)
 
@@ -44,7 +44,7 @@ if __name__ == '__main__':
     try:
         while True:
             #mt.accelerate(float(input()))
-            mt.free(float(input()))
+            mt.move(float(input()))
 
     except KeyboardInterrupt:
         mt.stop()
