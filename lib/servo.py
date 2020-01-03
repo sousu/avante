@@ -20,7 +20,7 @@ class Servo():
         if dgree < -44 or 44 < dgree:
             return 
         self.sv.ChangeDutyCycle(7.25+1.75*dgree/45)
-        time.sleep(0.05)
+        #time.sleep(0.01)
 
     def stop(self):
         self.sv.ChangeDutyCycle(7.25)

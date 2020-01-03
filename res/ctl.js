@@ -4,7 +4,7 @@
 
 var c = {};
 var x = new XMLHttpRequest();
-var s = 400;
+var s = 330;
 
 var angle = 0;
 var h = nipplejs.create({
@@ -17,7 +17,7 @@ var h = nipplejs.create({
 h.on("move start end",function(event,data){
     if(event.type == "start"){}
     if(event.type == "move"){
-        angle = Math.round(Math.sin(data.angle.radian)*data.distance/s*2*44);
+        angle = Math.round(Math.sin(data.angle.radian)*data.distance/s*2*-44);
     }
     if(event.type == "end"){
         angle = 0
@@ -35,7 +35,7 @@ var t = nipplejs.create({
 t.on("move start end",function(event,data){
     if(event.type == "start"){}
     if(event.type == "move"){
-        pw = Math.round(Math.cos(data.angle.radian)*data.distance/s*2*20);
+        pw = Math.round(Math.cos(data.angle.radian)*data.distance/s*2*40);
     }
     if(event.type == "end"){
         pw = 0
@@ -50,6 +50,6 @@ setInterval(function(){
         c.angle = angle;
         c.pw = pw;
     }
-},100);
+},50);
 
 

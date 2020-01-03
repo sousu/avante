@@ -21,17 +21,17 @@ class Motor():
         if pw < 0 or 100 < pw:
             return 
         self.mt.ChangeDutyCycle(7.25+(-2.00)*pw/100)
-        time.sleep(0.1)
+        #time.sleep(0.01)
 
     def back(self,pw):
         if pw < 0 or 20 < pw:
             return 
         self.mt.ChangeDutyCycle(7.25+(2.00)*pw/100)
-        time.sleep(0.1)
+        #time.sleep(0.01)
     
     def move(self,pw):
         self.mt.ChangeDutyCycle(7.25+(-2.00)*pw/100)
-        time.sleep(0.1)
+        #time.sleep(0.01)
 
     def stop(self):
         self.mt.ChangeDutyCycle(7.25)
