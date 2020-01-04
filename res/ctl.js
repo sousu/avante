@@ -35,7 +35,7 @@ var t = nipplejs.create({
 t.on("move start end",function(event,data){
     if(event.type == "start"){}
     if(event.type == "move"){
-        pw = Math.round(Math.cos(data.angle.radian)*data.distance/s*2*40);
+        pw = Math.round(Math.cos(data.angle.radian)*data.distance/s*2*35);
     }
     if(event.type == "end"){
         pw = 0

@@ -5,6 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5">
         <style>
         html, body {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Chrome and Opera */
+            touch-action: manipulation;
+
             position: absolute;
             top: 0;
             left: 0;
@@ -12,6 +19,7 @@
             bottom: 0;
             padding: 0;
             margin: 0;
+            background: #111;
         }
         #handle {
             position: absolute;
@@ -19,7 +27,6 @@
             top: 0;
             height: 50%;
             width: 100%;
-            background: #111;
         }
         #throttle {
             position: absolute;
@@ -27,15 +34,22 @@
             bottom: 0;
             height: 50%;
             width: 100%;
-            background: #069;
+        }
+        #stream {
+            position: relative;
+            height: 100%;
+            display: block;
+            margin: auto;
         }
         </style>
     </head>
     <body>
+        <img id="stream" alt=""/>
         <div id="handle"></div>
         <div id="throttle"></div>
         <script src="/res/nipplejs.js"></script>
         <script src="/res/ctl.js"></script>
+        <script src="/res/stream.js"></script>
     </body>
 </html>
 

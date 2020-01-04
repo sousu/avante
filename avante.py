@@ -2,8 +2,8 @@
 #coding:utf-8
 
 import time
-import RPi.GPIO as GPIO    
 from bottle import route,run,template,static_file
+#import RPi.GPIO as GPIO    
 
 import sys
 sys.path.append('./lib')
@@ -48,6 +48,6 @@ finally:
     print('..Cleanup')
     sv.stop()
     mt.stop()
-    GPIO.cleanup()
+    #GPIO.cleanup()
     quit()
 
