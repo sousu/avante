@@ -2,9 +2,13 @@
 // Controller Main
 // --- --- ---
 
+var s = 330;  // controller size
+var i = 100;  // interval
+var da = 3;   // effective diff angel
+var dp = 3;   // effective diff power
+
 var c = {};
 var x = new XMLHttpRequest();
-var s = 330;
 
 var angle = 0;
 var h = nipplejs.create({
@@ -23,7 +27,6 @@ h.on("move start end",function(event,data){
         angle = 0
     }
 });
-
 var pw = 0;
 var t = nipplejs.create({
     zone: document.getElementById('throttle'),
@@ -43,13 +46,12 @@ t.on("move start end",function(event,data){
 });
 
 setInterval(function(){
-    if(c.angle != angle || c.pw != pw){
-        console.log(angle+'_'+pw);
-        x.open('GET','/state/'+angle+'_'+pw);
-        x.send(null);
-        c.angle = angle;
-        c.pw = pw;
-    }
-},50);
+    if(Math.abs(c.angle-angle) < da && Math.abs(c.pw-pw) < dp) return;
+    console.log(angle+'_'+pw);
+    x.open('GET','/state/'+angle+'_'+pw);
+    x.send(null);
+    c.angle = angle;
+    c.pw = pw;
+},i);
 
 
