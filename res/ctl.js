@@ -44,25 +44,23 @@
     });
 
     // gamepad API
-    var gi = 100; // check interval
-    var gc = false; 
+    var gi = 100; // interval
+    var gc = null; 
     if(navigator.getGamepads){
-        setInterval(function(){
-            if(!gc) return; 
-            var gp = navigator.getGamepads()[0];
-            if(!gp) return;
-            angle = Math.round(gp.axes[0]*44); // left X
-            pw = Math.round(gp.axes[3]*-35);   // right Y
-        },gi);
+        addEventListener("gamepadconnected",function(){
+            console.log("gamepad connected");
+            gc = setInterval(function(){
+                var gp = navigator.getGamepads()[0];
+                if(!gp) return;
+                angle = Math.round(gp.axes[0]*44); // left X
+                pw = Math.round(gp.axes[3]*-35);   // right Y
+            },gi);
+        });
+        addEventListener("gamepaddisconnected",function(){
+            console.log("gamepad disconnected");
+            window.clearInterval(gc);
+        });
     }
-    addEventListener("gamepadconnected",function(){
-        console.log("gamepad connected");
-        gc = true;
-    });
-    addEventListener("gamepaddisconnected",function(){
-        console.log("gamepad disconnected");
-        gc = false;
-    });
 
     // main 
     var i = 100;  // send msg interval
