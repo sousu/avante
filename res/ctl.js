@@ -7,7 +7,7 @@
     var pw = 0;
     
     // web-base joystick (nipplejs)
-    var s = 330;  // controller size
+    var s = 330;  // stick size
     var c = {};
     var x = new XMLHttpRequest();
     var h = nipplejs.create({
