@@ -8,8 +8,6 @@
     
     // web-base joystick (nipplejs)
     var s = 330;  // stick size
-    var c = {};
-    var x = new XMLHttpRequest();
     var h = nipplejs.create({
         zone: document.getElementById('handle'),
         mode: 'dynamic',
@@ -63,9 +61,11 @@
     }
 
     // main 
-    var i = 100;  // send msg interval
+    var i = 100;  // request interval
     var da = 3;   // effective diff angel
     var dp = 3;   // effective diff power
+    var x = new XMLHttpRequest();
+    var c = {};
     setInterval(function(){
         if(Math.abs(c.angle-angle) < da && Math.abs(c.pw-pw) < dp) return;
         console.log(angle+'_'+pw);
