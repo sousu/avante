@@ -5,6 +5,8 @@
     // common
     var angle = 0;
     var pw = 0;
+    var max_angle = 44;
+    var max_pw = 35;
     
     // web-base joystick (nipplejs)
     var s = 330;  // stick size
@@ -18,7 +20,7 @@
     h.on("move start end",function(event,data){
         if(event.type == "start"){}
         if(event.type == "move"){
-            angle = Math.round(Math.sin(data.angle.radian)*data.distance/s*2*-44);
+            angle = Math.round(Math.sin(data.angle.radian)*data.distance/s*2*(-1)*max_angle);
         }
         if(event.type == "end"){
             angle = 0
@@ -34,7 +36,7 @@
     t.on("move start end",function(event,data){
         if(event.type == "start"){}
         if(event.type == "move"){
-            pw = Math.round(Math.cos(data.angle.radian)*data.distance/s*2*35);
+            pw = Math.round(Math.cos(data.angle.radian)*data.distance/s*2*max_pw);
         }
         if(event.type == "end"){
             pw = 0
@@ -50,8 +52,8 @@
             gc = setInterval(function(){
                 var gp = navigator.getGamepads()[0];
                 if(!gp) return;
-                angle = Math.round(gp.axes[0]*44); // left X
-                pw = Math.round(gp.axes[3]*-35);   // right Y
+                angle = Math.round(gp.axes[0]*max_angle); // left X
+                pw = Math.round(gp.axes[3]*(-1)*max_pw);   // right Y
             },gi);
         });
         addEventListener("gamepaddisconnected",function(){
