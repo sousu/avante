@@ -12,7 +12,7 @@ import motor
 
 args = sys.argv
 if not len(args) == 3:
-    print('usage avante.py <address> <port>')
+    print('usage rc.py <address> <port>')
     quit()
 
 c = ['']*2
@@ -38,7 +38,6 @@ def index(val='0_0'):
         c[1] = v[1]
     return 
 
-#--- ---
 try:
     run(host=args[1],port=args[2])
 except Exception as e:

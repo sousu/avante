@@ -6,16 +6,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 class Tracker:
-    def __init__(self,f):
-        self.folder = f
-
+    def __init__(self,j):
         print("init")
+        self.jnlf = j
         self.cap = cv2.VideoCapture(0)
-        wi = self.cap.get(cv2.CAP_PROP_FRAME_WIDTH)
-        hi = self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
-        fp = self.cap.get(cv2.CAP_PROP_FPS)
+        #wi = self.cap.get(cv2.CAP_PROP_FRAME_WIDTH)
+        #hi = self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
+        #fp = self.cap.get(cv2.CAP_PROP_FPS)
         #print('width,hight,fps: ',wi,hi,fp) #640.0 480.0 30.0
-
         self.cap.set(3,640) #幅
         self.cap.set(4,480) #高さ
         self.cap.set(5,5) #fps
@@ -58,7 +56,28 @@ class Tracker:
         # 繰返し回数, 精度の順に指定
         self.term_crit = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT,10,1)
 
-    def track(self):
+    def track(self,func):
+        try:
+            print("start")
+            while(True):
+                rtn,frame = self.cap.read()
+                frame = cv2.rotate(frame,cv2.ROTATE_180)
+                if rtn == True:
+                    hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
+                    bp = cv2.calcBackProject([hsv],[0],self.roi_hist,[0,180], 1)
+                    ret,self.window = cv2.meanShift(bp,self.window,self.term_crit)
+                    x,y,w,h = self.window
+                    cenx = int(x+w/2)
+                    angle = (cenx-320)/320*100
+                    print(str(cenx)+":"+str(int(angle)))
+                    func(angle)
+
+        except Exception as e:
+            print(e)
+        finally:
+            self.finish()
+
+    def meanShift(self):
         try:
             print("start")
             while(True):
@@ -69,17 +88,14 @@ class Tracker:
                     #色相の特徴量(ヒストグラムの比)を逆投影
                     hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
                     bp = cv2.calcBackProject([hsv],[0],self.roi_hist,[0,180], 1)
-
                     #meanshift/特徴量が多い部分へ枠を移動
                     ret,self.window = cv2.meanShift(bp,self.window,self.term_crit)
-                    
                     #物体検出した枠と中心を描画
                     x,y,w,h = self.window
                     frame = cv2.rectangle(frame,(x,y),(x+w,y+h),(255,255,255),2)
-                    cen_x = int(x+w/2)
-                    cen_y = int(y+h/2)
-                    cv2.circle(frame,(cen_x,cen_y),10,(0,180,0),-1)
-                    
+                    cenx = int(x+w/2)
+                    ceny = int(y+h/2)
+                    cv2.circle(frame,(cenx,ceny),10,(0,180,0),-1)
                     #表示
                     cv2.imshow('bp',bp)
                     cv2.imshow('meanshift',frame)
@@ -91,12 +107,38 @@ class Tracker:
         except Exception as e:
             print(e)
         finally:
-            print('close')
-            self.cap.release()
-            cv2.destroyAllWindows()
+            self.finish()
+    
+    def camShift(self):
+        try:
+            print("start")
+            while(True):
+                rtn,frame = self.cap.read()
+                frame = cv2.rotate(frame,cv2.ROTATE_180)
+                if rtn == True:
+                    hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
+                    bp = cv2.calcBackProject([hsv],[0],self.roi_hist,[0,180], 1)
+                    ret,self.window = cv2.CamShift(bp,self.window,self.term_crit)
+                    pts = cv2.boxPoints(ret)
+                    pts = np.int0(pts)
+                    frame = cv2.polylines(frame,[pts],True, 255,2)
+                    cv2.imshow('bp',bp)
+                    cv2.imshow('camshift',frame)
+                    key = cv2.waitKey(1)
+                    if key == 27: break #ESC
+
+        except Exception as e:
+            print(e)
+        finally:
+            self.finish()
+    
+    def finish(self):
+        print('finish')
+        self.cap.release()
+        cv2.destroyAllWindows()
 
     def jnl(self,a):
-        return self.folder+'/'+a+'.png'
+        return self.jnlf+'/'+a+'.png'
 
 # debug 
 if __name__ == '__main__':
@@ -104,5 +146,7 @@ if __name__ == '__main__':
     args = sys.argv
     if not len(args) == 2: quit()
     tr = Tracker(args[1])
-    tr.track()
+    def p(angle):
+        print(angle)
+    tr.track(p)
 
