@@ -1,5 +1,6 @@
 # ignore
 lib/*
+res/conn
 *.pyc
 res/nipplejs.js
 

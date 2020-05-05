@@ -42,6 +42,18 @@
             bottom: 0;
             margin: auto;
         }
+        #conn {
+          color: #eee;
+          position: relative;
+          position: relative;
+          margin: 20px;
+          padding: 5px 10px 8px 10px;
+          font-size: 100%;
+          width: -webkit-fill-available;
+          border-radius: 10px;
+          background-color: rgba(0,0,0,0.5);
+          float: right;
+        }
         @media screen and (orientation: landscape){
             #stream {
                 width: 100%;
@@ -55,17 +67,26 @@
                 width: 100vh;
                 left: -28vw; /*eval*/
             }
+            #conn {
+                transform: rotate(90deg);
+                transform-origin: left;
+                position: fixed;
+                font-size: 220%; /*eval*/
+                right: -30px;
+                top: 230px;
+            }
         }
-
         </style>
     </head>
     <body>
         <img id="stream" alt=""/>
         <div id="handle"></div>
         <div id="throttle"></div>
+        <div id="conn"></div>
         <script src="/res/nipplejs.js"></script>
         <script src="/res/ctl.js"></script>
         <script src="/res/stream.js"></script>
+        <script src="/res/conn.js"></script>
     </body>
 </html>
 
