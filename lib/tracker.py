@@ -140,13 +140,18 @@ class Tracker:
     def jnl(self,a):
         return self.jnlf+'/'+a+'.png'
 
+
 # debug 
 if __name__ == '__main__':
     import sys
     args = sys.argv
     if not len(args) == 2: quit()
     tr = Tracker(args[1])
-    def p(angle):
-        print(angle)
-    tr.track(p)
+    
+    tr.meanShift()
+    
+    #def p(angle):
+    #    print(angle)
+    #tr.track(p)
+
 
