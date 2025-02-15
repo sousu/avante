@@ -3,49 +3,50 @@
         <meta charset="utf-8">
         <title>avante</title>
         <style>
-        html, body {
-            -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-user-select: none; /* Safari */
-            -moz-user-select: none; /* Firefox */
-            -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Chrome and Opera */
-            touch-action: manipulation;
-
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            padding: 0;
-            margin: 0;
-            background: #111;
+        html,body {
+          -webkit-touch-callout: none; /* iOS Safari */
+          -webkit-user-select: none; /* Safari */
+          -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Chrome and Opera */
+          touch-action: manipulation;
+          font-family: monospace;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          padding: 0;
+          margin: 0;
+          background: #111;
         }
         #handle {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 50%;
-            width: 100%;
+          position: sticky;
+          float:left;
+          height: 100%;
+          width: 50%;
+          z-index:1000;
         }
         #throttle {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 50%;
-            width: 100%;
+          position: sticky;
+          float:right;
+          height: 100%;
+          width: 50%;
+          z-index:1000;
         }
         #stream {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: auto;
+          position: absolute;
+          width: 100%;
+          max-height: 100%;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
         }
         #conn {
+          position: absolute;
           color: #eee;
-          position: relative;
-          position: relative;
           margin: 20px;
           padding: 5px 10px 8px 10px;
           font-size: 100%;
@@ -54,28 +55,29 @@
           background-color: rgba(0,0,0,0.5);
           float: right;
         }
-        @media screen and (orientation: landscape){
-            #stream {
-                width: 100%;
-                max-height: 100%;
-            }
+        /*@media screen and (orientation: landscape){
+          #stream {
+            width: 100%;
+            max-height: 100%;
+          }
         }
         @media screen and (orientation: portrait){
-            #stream {
-                transform: rotate(90deg);
-                position: fixed;
-                width: 100vh;
-                left: -28vw; /*eval*/
-            }
-            #conn {
-                transform: rotate(90deg);
-                transform-origin: left;
-                position: fixed;
-                font-size: 220%; /*eval*/
-                right: -30px;
-                top: 230px;
-            }
-        }
+          #stream {
+            transform: rotate(90deg);
+            position: fixed;
+            width: 100vh;
+            left: -28vw; 
+          }
+
+          #conn {
+            transform: rotate(90deg);
+            transform-origin: left;
+            position: fixed;
+            font-size: 220%;
+            right: -30px;
+            top: 230px;
+          }
+        }*/
         </style>
     </head>
     <body>

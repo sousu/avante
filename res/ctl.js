@@ -14,13 +14,13 @@
         zone: document.getElementById('handle'),
         mode: 'dynamic',
         color: '#069',
-        lockY: true,
+        lockX: true,
         size: s
     });
     h.on("move start end",function(event,data){
         if(event.type == "start"){}
         if(event.type == "move"){
-            angle = Math.round(Math.sin(data.angle.radian)*data.distance/s*2*(-1)*max_angle);
+            angle = Math.round(Math.cos(data.angle.radian)*data.distance/s*2*(-1)*max_angle);
         }
         if(event.type == "end"){
             angle = 0
@@ -30,13 +30,13 @@
         zone: document.getElementById('throttle'),
         mode: 'dynamic',
         color: '#111',
-        lockX: true,
+        lockY: true,
         size: s
     });
     t.on("move start end",function(event,data){
         if(event.type == "start"){}
         if(event.type == "move"){
-            pw = Math.round(Math.cos(data.angle.radian)*data.distance/s*2*max_pw);
+            pw = Math.round(Math.sin(data.angle.radian)*data.distance/s*2*max_pw);
         }
         if(event.type == "end"){
             pw = 0
