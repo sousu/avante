@@ -149,7 +149,6 @@ if __name__ == '__main__':
     tr = Tracker(args[1])
     
     tr.meanShift()
-    
     #def p(angle):
     #    print(angle)
     #tr.track(p)
