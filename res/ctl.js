@@ -8,7 +8,7 @@
     var max_angle = 44;
     var max_pw = 35;
     
-    // web-base joystick (nipplejs)
+    // --- web-base joystick (nipplejs) ---
     var s = 330;  // stick size
     var h = nipplejs.create({
         zone: document.getElementById('handle'),
@@ -43,7 +43,7 @@
         }
     });
 
-    // gamepad API
+    // --- gamepad API ---
     var gi = 100; // interval
     var gc = null; 
     if(navigator.getGamepads){
@@ -62,8 +62,8 @@
         });
     }
 
-    // main 
-    var i = 100;  // request interval
+    // --- main ---
+    var i = 90;  // request interval
     var da = 3;   // effective diff angel
     var dp = 3;   // effective diff power
     var x = new XMLHttpRequest();
