@@ -7,7 +7,7 @@ import time
 class Motor():
     # PWM config: 
     #  50hz->20ms 
-    p = 4
+    p = 4 # GPIO_4 (pin_7)
     c = 1520 # center 15.2ms
     b = 25 # back limit
 

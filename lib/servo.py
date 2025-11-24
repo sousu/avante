@@ -9,7 +9,7 @@ class Servo():
     #  50hz->20ms 
     #  1.1ms-1.45ms-1.8ms
     #  5.5%(-1.75)-7.25%-9%(+1.75)
-    p = 3  # GPIO_3 not pin_num
+    p = 3  # GPIO_3 (pin_5)
 
     def __init__(self):
         self.pi = pigpio.pi()
